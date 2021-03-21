@@ -11,6 +11,9 @@ public class ApplicationDto {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	public ApplicationDto() {
+		super();
+	}
 	public String getNom() {
 		return nom;
 	}
