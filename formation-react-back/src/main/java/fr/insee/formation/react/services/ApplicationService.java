@@ -34,11 +34,9 @@ public class ApplicationService {
 	@Transactional
 	public ApplicationDto creer(ApplicationDto dto) {
 		if(StringUtils.isNotEmpty(dto.getNom())) {
-			Application entity = new Application();
-			Optional<Application> optional = applicationRepository.findByNom(StringUtils.trim(dto.getNom()));
-			if(optional.isPresent()) {
-				entity = optional.get();
-			}
+			Application entity = applicationRepository
+					.findByNom(StringUtils.trim(dto.getNom()))
+					.orElseGet(Application::new);		
 			entity.setNom(StringUtils.trim(dto.getNom()));
 			entity.setVersion(dto.getVersion());
 			entity.setEtat(dto.getEtat());
